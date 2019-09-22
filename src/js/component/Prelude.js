@@ -6,16 +6,28 @@ export class Prelude extends React.Component {
 
 		this.state = {
 			todoList: [
-				{ title: "Go to 4Geeks", id: 0, done: false },
-				{ title: "Practice Reac", id: 1, done: false },
-				{ title: "Record Dj Set", id: 2, done: false }
+				{ name: "Go to 4Geeks", i: 0, done: false },
+				{ name: "Practice Reac", i: 1, done: false },
+				{ name: "Record Dj Set", i: 2, done: false }
 			]
 		};
 	}
+	handleFormSubmit(e) {
+		if (document.querySelector("[name=todoInput]").value === "") {
+			return null;
+		}
 
+		let ind = this.state.todoList.length - 1;
+		this.setState({
+			todoList: this.state.todoList.concat([
+				{ name: e, done: false, i: ind + 1 }
+			])
+		});
+		document.querySelector("[name=todoInput]").value = "";
+	}
 	deleteTodo(i) {
 		this.setState({
-			todoList: this.state.todoList.filter(item => item.id !== i)
+			todoList: this.state.todoList.filter(item => item.i !== i)
 		});
 	}
 
@@ -23,12 +35,12 @@ export class Prelude extends React.Component {
 		let newArray = this.state.todoList.map((item, index) => {
 			return (
 				<li key={index}>
-					{item.title}
+					{item.name}
 
 					<button className="del">
 						<i
 							className="fas fa-trash"
-							onClick={() => this.deleteTodo(item.id)}
+							onClick={() => this.deleteTodo(item.i)}
 						/>
 					</button>
 				</li>
@@ -43,10 +55,20 @@ export class Prelude extends React.Component {
 						<input
 							className="input-cont"
 							type="text"
-							name="taskInput"
+							name="todoInput"
 							placeholder="Todo"
 						/>
-						<input type="button" value="+" name="add" />
+						<input
+							type="button"
+							value="+"
+							name="add"
+							onClick={() =>
+								this.handleFormSubmit(
+									document.querySelector("[name=todoInput]")
+										.value
+								)
+							}
+						/>
 					</form>
 					<ul className="the-list">{newArray}</ul>
 					<p>{this.state.todoList.length} item left</p>
