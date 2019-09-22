@@ -3,17 +3,18 @@
 body {
     background:black;
 }
-
+/***************************** Wrapper *********************************/
 .wrapper{
     margin-top: 50px;
 }
 
+/***************************** Todo Container  *********************************/
 
-.todolist-cont {
-
+.todoList-cont {
+    padding-top: 50px;
     background: lightgray;
-    width:600px;
-    height:400px;
+    width:700px;
+    height:700px;
     border-radius: 30px;
 
 }
@@ -24,28 +25,46 @@ body {
 
 }
 
-
+/***************************** Delete Button *********************************/
 
 .del{
-    margin-left: 20px;
+    margin-right: 20px;
     font-size: 15px;
-    vertical-align: middle;
-
 }
+
 .del:hover {
     color: red;
 }
+
+/***************************** Todo List *********************************/
 
 .the-list{
     font-family: 'Open Sans Condensed', sans-serif;
     margin-top: 20px;
     font-size: 20px;
     list-style: none;
+    box-shadow: 5px 10px 15px white, 5px 10px 35px lavender;
+    width: 680px;
+    margin-left: 10px;
 
 }
+
+li > .del{
+    float: right;
+    visibility:hidden;
+}
+
+li:hover > .del {
+ visibility:visible;
+}
+
+/***************************** Item left secction *********************************/
+
 
 p {
     font-family: 'Open Sans Condensed', sans-serif;
     margin-top: 50px;
     margin-left: 30px;
+    line-height: 2;
 }
+

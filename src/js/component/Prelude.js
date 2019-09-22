@@ -5,11 +5,7 @@ export class Prelude extends React.Component {
 		super();
 
 		this.state = {
-			todoList: [
-				{ name: "Go to 4Geeks", i: 0, done: false },
-				{ name: "Practice Reac", i: 1, done: false },
-				{ name: "Record Dj Set", i: 2, done: false }
-			]
+			todoList: []
 		};
 	}
 	handleFormSubmit(e) {
@@ -49,7 +45,7 @@ export class Prelude extends React.Component {
 
 		return (
 			<div className="wrapper d-flex justify-content-center">
-				<div className="todolist-cont">
+				<div className="todoList-cont">
 					<h2 className="todo-text text-center">Todo List</h2>
 					<form className=" text-center">
 						<input
