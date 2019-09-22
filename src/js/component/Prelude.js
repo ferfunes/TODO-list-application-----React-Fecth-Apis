@@ -28,6 +28,19 @@ export class Prelude extends React.Component {
 		});
 	}
 
+	componentDidMount() {
+		const url = "https://assets.breatheco.de/apis/fake/todos/user/ferfunes";
+
+		fetch(url)
+			.then(response => {
+				return response.json();
+			})
+			.then(data => {
+				this.setState({ todoList: data });
+			})
+			.catch(error => console.log(error));
+	}
+
 	render() {
 		let newArray = this.state.todoList.map((data, id) => {
 			return (
