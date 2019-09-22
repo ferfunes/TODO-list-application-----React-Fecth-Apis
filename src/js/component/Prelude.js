@@ -8,35 +8,36 @@ export class Prelude extends React.Component {
 			todoList: []
 		};
 	}
-	handleFormSubmit(e) {
+
+	formSubmit(e) {
 		if (document.querySelector("[name=todoInput]").value === "") {
 			return null;
 		}
 
-		let ind = this.state.todoList.length - 1;
+		let idx = this.state.todoList.length - 1;
 		this.setState({
 			todoList: this.state.todoList.concat([
-				{ name: e, done: false, i: ind + 1 }
+				{ label: e, done: false, id: idx + 1 }
 			])
 		});
 		document.querySelector("[name=todoInput]").value = "";
 	}
 	deleteTodo(i) {
 		this.setState({
-			todoList: this.state.todoList.filter(item => item.i !== i)
+			todoList: this.state.todoList.filter(data => data.id !== i)
 		});
 	}
 
 	render() {
-		let newArray = this.state.todoList.map((item, index) => {
+		let newArray = this.state.todoList.map((data, id) => {
 			return (
-				<li key={index}>
-					{item.name}
+				<li key={id}>
+					{data.label}
 
 					<button className="del">
 						<i
 							className="fas fa-trash"
-							onClick={() => this.deleteTodo(item.i)}
+							onClick={() => this.deleteTodo(data.id)}
 						/>
 					</button>
 				</li>
@@ -59,7 +60,7 @@ export class Prelude extends React.Component {
 							value="+"
 							name="add"
 							onClick={() =>
-								this.handleFormSubmit(
+								this.formSubmit(
 									document.querySelector("[name=todoInput]")
 										.value
 								)
